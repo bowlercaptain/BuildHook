@@ -1,0 +1,26 @@
+#!/bin/sh
+
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+echo running post-merge
+
+case $CURRENT_BRANCH in
+mastabranch)
+  echo merged back into develop
+  hooks/windows-build -beta
+  hooks/mac-build -beta
+  hooks/android-build -beta
+  ;;
+feature/*)
+  echo merged into a feature lol
+  ;;
+primetime)
+  echo merged into release o shat
+    hooks/windows-build
+    hooks/mac-build
+    hooks/android-build
+  ;;
+*)
+  echo something else man
+  ;;
+esac

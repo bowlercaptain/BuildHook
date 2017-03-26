@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo loaded config file
+
+export unityLocation=D:/wares/Unity/Editor/Unity.exe
+export workingFolder=D:/shit/deleteme
+#sorry about this one.
+export projectFolder=$(pwd)
+export MSBuildLocation=C:/"Program Files (x86)"/MSBuild/14.0/Bin/MSBuild.exe
+export MSTestLocation=C:/"Program Files (x86)"/"Microsoft Visual Studio 14.0"/Common7/IDE/MSTest.exe
+
+#Yuri Jam 2016
+export itchURL=breakfastparty/oktacos
+export projectName=OKtacos
+
+#Kusoge
+#export itchURL=breakfastparty/CATegorical
+#export projectName=CATegorical
