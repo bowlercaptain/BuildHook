@@ -22,11 +22,10 @@ if [ ! -f "$MSBuildLocation" ]; then
     exit 1
 fi
 
-#set -e
 while [ -e Temp/UnityLockFile ]
 do
-	echo I cannot build while the project is still open in Unity. I will wait 5 seconds and try again.
-	sleep 5
+    echo I cannot build while the project is still open in Unity. I will wait 5 seconds and try again.
+    sleep 5
 done
 
 echo "running tests"
@@ -35,7 +34,7 @@ set -e
 "$MSTestLocation" /testcontainer:tests/KusoTest/KusoTest/bin/Debug/KusoTest.dll
 
 echo "executing build"
-"$unityLocation" -batchmode -quit -projectpath $projectFolder -buildWindowsPlayer $workingFolder/windows/$projectName/$projectName.exe
+"$unityLocation" -batchmode -quit -projectpath $projectFolder -buildTarget WebGL -executeMethod BuildScript.PerformBuild -logFile
 
-hooks/butler push $workingFolder/windows/$projectName $itchURL:windows$1
-echo "pushed!"
+hooks/butler push $workingFolder/webgl/$projectName $itchURL:webgl$1
+echo "pushed!" 

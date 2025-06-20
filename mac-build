@@ -1,6 +1,26 @@
 #!/bin/bash
 
-. hooks/config
+if [ "$(uname)" != "Darwin" ]; then
+    echo "ERROR: macOS builds must be performed on macOS. Please run this script on a Mac."
+    exit 1
+fi
+
+if [ ! -f hooks/config ] && [ ! -f ./config ]; then
+    echo "ERROR: config file not found. Please copy config to the project root and edit it to match your system."
+    exit 1
+fi
+
+# Try both possible config locations
+if [ -f hooks/config ]; then
+    . hooks/config
+elif [ -f ./config ]; then
+    . ./config
+fi
+
+if [ ! -f "$unityLocation" ]; then
+    echo "ERROR: Unity executable not found at $unityLocation. Please edit config to set the correct path."
+    exit 1
+fi
 
 #set -e
 while [ -e Temp/UnityLockFile ]
